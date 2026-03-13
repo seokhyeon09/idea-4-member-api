@@ -23,10 +23,13 @@ public class Member {
     private String password;
     private LocalDateTime createdAt;
 
+    private String role;
+
     public Member(String name, String email, String password){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = "ROLE_USER";
         this.createdAt = LocalDateTime.now();
     }
 
