@@ -11,12 +11,14 @@ public class MemberResponse {
     private Long id;
     private String name;
     private String email;
+    private String role;
     private LocalDateTime createdAt;
 
     public MemberResponse(Member member){
         this.id = member.getId();
         this.name = member.getName();
         this.email = member.getEmail();
+        this.role = member.getRole();
         this.createdAt = member.getCreatedAt();
     }
 }

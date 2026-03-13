@@ -1,9 +1,7 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 public class Member {
     @Id
@@ -19,13 +17,20 @@ public class Member {
     private Long id;
 
     private String name;
+    //무족건 들어가야하고 유일해야함
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
     private String role;
 
-    public Member(String name, String email, String password){
+    private String refreshToken;
+
+    public Member(String name, String email, String password, String role){
         this.name = name;
         this.email = email;
         this.password = password;
@@ -36,5 +41,9 @@ public class Member {
     public void update(String name, String email){
         this.name = name;
         this.email = email;
+    }
+
+    public void updateRefreshToken(String refreshToken){
+        this.refreshToken = refreshToken;
     }
 }
