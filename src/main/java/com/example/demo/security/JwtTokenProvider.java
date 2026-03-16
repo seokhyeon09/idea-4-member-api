@@ -20,7 +20,7 @@ public class JwtTokenProvider {
     @Value("${jwt.access-token-expire}")
     private long accessTokenValidTime;
 
-    @Value("${refresh-token-expire}")
+    @Value("${jwt.refresh-token-expire}")
     private long refreshTokenValidTime;
 
     private SecretKey key;

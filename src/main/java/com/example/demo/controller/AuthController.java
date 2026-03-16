@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.Member;
 import com.example.demo.dto.LoginRequest;
 import com.example.demo.dto.MemberResponse;
+import com.example.demo.dto.TokenResponse;
 import com.example.demo.service.AuthService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -15,16 +16,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public MemberResponse login(@RequestBody LoginRequest request, HttpSession session){
-        return authService.login(request,session);
-    }
-    @PatchMapping("/logout")
-    public void logout(HttpSession session){
-        authService.logout(session);
+    public TokenResponse login(@RequestBody LoginRequest request){
+        return authService.login(request);
     }
 
-    @GetMapping("/me")
-    public MemberResponse memberResponse(HttpSession session){
-        return authService.getLoginMember(session);
+    @PostMapping("/reissue")
+    public TokenResponse reissue(@RequestHeader("Refresh-Token") String refreshToken){
+        return authService.reissue(refreshToken);
     }
 }
