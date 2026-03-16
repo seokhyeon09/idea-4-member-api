@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "auth/reissue").permitAll()
+                        .requestMatchers("/auth/login", "/auth/reissue").permitAll()
                         .requestMatchers(HttpMethod.POST, "/members").permitAll()
                         //어드민 권한이있는 사용자만 사용가능
                         .requestMatchers("/admin/**").hasRole("ADMIN")
